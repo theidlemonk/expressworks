@@ -36,5 +36,15 @@ app.get('/search', function(req, res) {
     res.send(req.query);
 });
 
+app.get('/books', function(req, res) {
+    var file = process.argv[3]
+    require('fs').readFile(file, function(err, data) {
+        if (err) {
+            res.sendStatus(500)
+        };
+        res.send(JSON.parse(data));
+    });
+});
+
 // app.use(express.static(process.argv[3] || path.join(__dirname, 'public')));
 app.listen(process.argv[2]);
