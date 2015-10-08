@@ -32,5 +32,9 @@ app.put('/message/:id', function(req, res) {
     res.end(newId);
 });
 
+app.get('/search', function(req, res) {
+    res.send(req.query);
+});
+
 // app.use(express.static(process.argv[3] || path.join(__dirname, 'public')));
 app.listen(process.argv[2]);
