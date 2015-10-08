@@ -21,9 +21,16 @@ app.post('/form', function(req, res) {
 });
 
 var stylus = require('stylus');
-app.use(stylus.middleware(process.argv[3]));
+// app.use(stylus.middleware(process.argv[3]));
 // app.use('/main.css', express.static(process.argv[3] + '/main.css'));
-app.use(express.static(process.argv[3]));
+// app.use(express.static(process.argv[3]));
+
+app.put('/message/:id', function(req, res) {
+    var newId = require('crypto').createHash('sha1')
+        .update(new Date().toDateString() + req.params.id)
+        .digest('hex')
+    res.end(newId);
+});
 
 // app.use(express.static(process.argv[3] || path.join(__dirname, 'public')));
 app.listen(process.argv[2]);
